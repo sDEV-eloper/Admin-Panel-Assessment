@@ -5,6 +5,8 @@ const cors=require('cors')
 const mongoose = require('mongoose');
 const userRoutes = require('./routes/userRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const cookieParser = require('cookie-parser');
+
 
 dotenv.config();
 const app = express();
@@ -12,7 +14,7 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
-
+app.use(cookieParser());
 
 app.use('/api/users', userRoutes);
 app.use('/api/admin', adminRoutes);
