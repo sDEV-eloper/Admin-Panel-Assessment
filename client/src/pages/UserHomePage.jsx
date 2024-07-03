@@ -1,12 +1,15 @@
 import { useSelector } from "react-redux";
 import { selectUser } from "../redux/slices/userSlice";
+import Header from "../components/Header";
 
 const UserHomePage = () => {
 
   const user = useSelector(selectUser);
 
   return (
-   <section className="bg-white ">
+  <>
+   <Header/>
+ <section className="bg-white ">
   <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
     
     <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl ">Welcome to User Home Page</h1>
@@ -22,7 +25,7 @@ const UserHomePage = () => {
     </div> 
   </div>
 </section>
-
+</> 
   )
 }
 

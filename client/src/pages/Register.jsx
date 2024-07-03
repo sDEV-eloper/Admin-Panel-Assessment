@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
 
@@ -10,6 +10,7 @@ const Register = () => {
   const [password, setPassword]=useState();
   const [role, setRole]=useState();
 
+  const navigate=useNavigate()
 
   const handleSubmit=async(e)=>{
     e.preventDefault();
@@ -22,6 +23,7 @@ const Register = () => {
         role
       });
       console.log('User registered successfully:');
+      navigate('/login')
     } catch (error) {
       console.error('Error registering user:', error);
     }

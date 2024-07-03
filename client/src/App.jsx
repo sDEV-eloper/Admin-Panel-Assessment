@@ -9,7 +9,6 @@ import UserHomePage from './pages/UserHomePage';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import PrivateRoute from './components/PrivateRoute';
-import Header from './components/Header';
 
 const App = () => {
   const user = useSelector(selectUser);
@@ -24,7 +23,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-    <Header/>
+   
       <Routes>
         <Route
           path="/"
