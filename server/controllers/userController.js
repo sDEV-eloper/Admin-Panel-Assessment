@@ -7,13 +7,12 @@ exports.register = async (req, res, next) => {
 
   const { firstName, lastName, email, password, role } = req.body;
  const hashedPassword = bcrypt.hashSync(password, 10);
-console.log({hashedPassword})
-  //save to database
+
   const newUser = new User({ firstName, lastName, email, password: hashedPassword, role });
   try {
     const existingEmail = await User.findOne({ email });  
     if (existingEmail) {
-      return res.status(400).json("email already exists");
+      return res.status(400).json({error:"email already exists"});
     }
     await newUser.save();
     res.status(201).json("User created successfully");
@@ -25,7 +24,7 @@ console.log({hashedPassword})
 // User login
 exports.login = async (req, res, next) => {
   const { email, password } = req.body;
-  console.log(req.body);
+
   try {
     const validUser = await User.findOne({ email });
     if (!validUser) return next(errorHandler(404, "user not found "));

@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
+import { selectUser } from '../redux/slices/userSlice';
+import { useSelector } from 'react-redux';
 const Header = () => {
+    const user = useSelector(selectUser);
+
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const handleLogout = () => {
@@ -15,12 +18,13 @@ const Header = () => {
 
     return (
         <header>
-            <nav className="bg-gray-100 border-gray-200 px-4 lg:px-6 py-2.5">
+            <nav className="bg-gradient-to-t from-slate-50 to-slate-300 border-gray-200 px-4 lg:px-6 py-2.5">
                 <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
                     <Link to="/" className="flex items-center">
                         <span className="self-center text-xl font-semibold whitespace-nowrap">Dashboard</span>
                     </Link>
                     <div className="flex items-center lg:order-2">
+                        <p className="text-black  font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 uppercase">{user.role}</p>
                         <button onClick={handleLogout} className="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2">Log out</button>
                         <button
                             onClick={toggleMobileMenu}

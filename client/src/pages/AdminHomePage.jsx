@@ -4,7 +4,10 @@ import { MdAdd } from 'react-icons/md';
 import { IoClose } from 'react-icons/io5';
 import Header from '../components/Header';
 
+
 const Admin = () => {
+
+
   const [users, setUsers] = useState([]);
   const [modalOpen, setModalOpen] = useState({
     createUserModal: false,
@@ -16,7 +19,7 @@ const Admin = () => {
   const fetchUsers = () => {
     axios
       .get('/api/admin/users')
-      .then((response) => setUsers(response.data))
+      .then((response) => setUsers(response.data.filter(user => user.role === 'user')))
       .catch((error) => console.error(error));
   };
   
@@ -73,7 +76,10 @@ const Admin = () => {
         fetchUsers()
         closeModal('updateUserModal');
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        console.error('Error updating user:',error);
+        
+      });
   };
 
   const handleDeleteUser = () => {
@@ -122,9 +128,7 @@ const Admin = () => {
                     <th scope="col" className="px-4 py-3">
                       Email
                     </th>
-                    <th scope="col" className="px-4 py-3">
-                      Actions
-                    </th>
+                  
                   </tr>
                 </thead>
                 <tbody>
@@ -138,13 +142,13 @@ const Admin = () => {
                       <td className="px-4 py-3 flex items-center justify-end gap-4">
                         <button
                           onClick={() => openModal('updateUserModal', user)}
-                          className="text-sm font-medium hover:bg-green-700 px-2 py-1 text-center text-white rounded-sm focus:outline-none bg-green-600"
+                          className="text-sm font-medium hover:bg-green-800 px-6 py-2 text-center text-white rounded-md focus:outline-none bg-green-700"
                         >
                           Edit
                         </button>
                         <button
                           onClick={() => openModal('deleteModal', user)}
-                          className="text-sm font-medium hover:bg-red-700 px-2 py-1 text-center text-white rounded-sm focus:outline-none bg-red-600"
+                          className="text-sm font-medium hover:bg-red-700 px-3 py-2 text-center text-white rounded-md focus:outline-none bg-red-600"
                         >
                           Delete
                         </button>

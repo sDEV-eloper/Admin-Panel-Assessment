@@ -15,17 +15,17 @@ const Register = () => {
   const handleSubmit=async(e)=>{
     e.preventDefault();
     try {
-    await axios.post('/api/users/register', {
+    const response=await axios.post('/api/users/register', {
         firstName,
         lastName,
         email,
         password,
         role
       });
-      console.log('User registered successfully:');
+      console.log('User registered successfully:', response);
       navigate('/login')
     } catch (error) {
-      console.error('Error registering user:', error);
+      console.error('Error registering user', error);
     }
   }
 

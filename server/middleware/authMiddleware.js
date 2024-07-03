@@ -9,7 +9,7 @@ exports.isAdmin = async (req, res, next) => {
       throw new Error('Authorization token not found');
     }
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    console.log({decoded})
+    
     const user = await User.findById(decoded._id);
     if (!user || user.role !== 'admin') {
       return res.status(403).json({ error: 'Access denied' });
