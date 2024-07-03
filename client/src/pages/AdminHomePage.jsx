@@ -2,7 +2,7 @@ import  { useState } from 'react';
 import { MdAdd } from 'react-icons/md';
 import { IoClose } from "react-icons/io5";
 
-const Home = () => {
+const Admin = () => {
   const [users, setUsers] = useState([
     { id: 1, firstName: 'User1', lastName: 'Singh', email: 'user1@gmail.com' },
     { id: 2, firstName: 'User2', lastName: 'Singh', email: 'user2@gmail.com' },
@@ -313,4 +313,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Admin;
