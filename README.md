@@ -29,4 +29,10 @@ Before running this application locally, ensure you have the following installed
    cd .. 
    cd server
    nodemon server.js
+   
+3. **Create .env to server directory:**
+
+PORT=5000
+MONGODB_URI=<your-mongodb-uri>
+JWT_SECRET=<your-jwt-secret>
 
