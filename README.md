@@ -1,6 +1,6 @@
-# MERN Stack Application
+# Admin Panel Application
 
-This is a MERN (MongoDB, Express.js, React.js, Node.js) stack application with user authentication and admin panel functionalities.
+This is a MERN (MongoDB, Express.js, React.js, Node.js) stack Admin Panel application with user authentication and admin panel functionalities.
 
 ## Prerequisites
 
