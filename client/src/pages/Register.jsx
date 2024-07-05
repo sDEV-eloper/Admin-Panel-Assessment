@@ -9,11 +9,12 @@ const Register = () => {
   const [email, setEmail]=useState();
   const [password, setPassword]=useState();
   const [role, setRole]=useState();
+  const [error, setError] = useState('');
 
   const navigate=useNavigate()
 
   const handleSubmit=async(e)=>{
-    e.preventDefault();
+    e.preventDefault(); 
     try {
     const response=await axios.post('/api/users/register', {
         firstName,
@@ -26,6 +27,11 @@ const Register = () => {
       navigate('/login')
     } catch (error) {
       console.error('Error registering user', error);
+      if (error.response && error.response.data && error.response.data.error) {
+        setError(error.response.data.error);
+      } else {
+        setError('An unexpected error occurred.');
+      }
     }
   }
 
@@ -52,6 +58,7 @@ const Register = () => {
           <div>
             <label  className="block  text-sm font-medium text-gray-900 "> Email</label>
             <input type="email" name="email" id="email" value={email} onChange={(e)=>setEmail(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="name@company.com" required />
+          {error && <p className="text-red-600 text-sm">*{error}</p> }
           </div>
           <div>
             <label  className="block  text-sm font-medium text-gray-900 ">Password</label>

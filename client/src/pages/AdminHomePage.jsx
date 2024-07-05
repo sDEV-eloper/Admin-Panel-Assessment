@@ -9,6 +9,8 @@ const Admin = () => {
 
 
   const [users, setUsers] = useState([]);
+  const [error, setError] = useState('');
+
   const [modalOpen, setModalOpen] = useState({
     createUserModal: false,
     updateUserModal: false,
@@ -53,7 +55,14 @@ const Admin = () => {
         fetchUsers()
         closeModal('createUserModal');
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        console.error('Error registering user', error);
+      if (error.response && error.response.data && error.response.data.error) {
+        setError(error.response.data.error);
+      } else {
+        setError('An unexpected error occurred.');
+      }
+      });
   };
 
   const handleUpdateUser = (event) => {
@@ -223,6 +232,7 @@ const Admin = () => {
                       required
                       className="mt-1 p-2 focus:ring-primary-500 focus:border-primary-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                     />
+                              {error && <p className="text-red-600 text-sm">*{error}</p> }
                   </div>
                   <div className="mb-4">
                     <label
